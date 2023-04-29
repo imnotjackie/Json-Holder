@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>UUID Generator</title>
+	<script>
+		function generateUUID() {
+			// Generate a random UUID in version 4 format
+			let uuid = "";
+			let chars = "0123456789abcdef";
+			for (let i = 0; i < 32; i++) {
+				if (i == 8 || i == 12 || i == 16 || i == 20) {
+					uuid += "-";
+				}
+				uuid += chars.charAt(Math.floor(Math.random() * chars.length));
+			}
+
+			// Copy the UUID to the clipboard
+			let textarea = document.createElement("textarea");
+			textarea.value = uuid;
+			document.body.appendChild(textarea);
+			textarea.select();
+			document.execCommand("copy");
+			document.body.removeChild(textarea);
+
+			// Display a message to the user
+			alert("UUID copied to clipboard: " + uuid);
+		}
+	</script>
+</head>
+<body>
+	<button onclick="generateUUID()">Generate UUID</button>
+</body>
+</html>
